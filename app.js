@@ -39,7 +39,9 @@ var Registro = mongoose.model("Registro", schema);
 app.get('/register', (req, res) => {
   res.send('<form action="/register" method="post">Name<br><label for="name"><input type="text" id="name" name="name"><br>Email<br><input type="text" name="email" id="email"><br>Contraseña<br><input type="password" id="password" name="password"><br> <button type="submit">Registrarse</button></form>');
 });
+
 app.use(express.urlencoded());
+//Guarda nombre y usuario en la base de datos y encripta la contraseña
 app.post('/register', async(req, res) => {
 
   var  pass = await bcrypt.hash(req.body.password, 10);
